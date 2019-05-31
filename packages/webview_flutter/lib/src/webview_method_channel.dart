@@ -59,6 +59,19 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
   }
 
   @override
+  Future<void> loadAssetFile(
+    String url,
+  ) async {
+    assert(url != null);
+    // TODO(amirh): remove this on when the invokeMethod update makes it to stable Flutter.
+    // https://github.com/flutter/flutter/issues/26431
+    // ignore: strong_mode_implicit_dynamic_method
+    return _channel.invokeMethod('loadAssetFile', {
+      'url': url,
+    });
+  }
+
+  @override
   Future<String> currentUrl() => _channel.invokeMethod('currentUrl');
 
   @override
